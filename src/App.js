@@ -18,13 +18,13 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-    let res = await axios.get(`http://localhost:4000/transactions`)
+    let res = await axios.get(`/transactions`)
     this.setState({ data: res.data })
   }
 
   pushPosTransaction = async (newTransaction) => {
     newTransaction.amount = Number(newTransaction.amount)
-    let res = await axios.post("http://localhost:4000/transaction", newTransaction)
+    let res = await axios.post("/transaction", newTransaction)
     let data = [...this.state.data]
     data.push(res.data)
     this.setState({ data })
@@ -32,14 +32,14 @@ class App extends Component {
 
   pushNegTransaction = async (newTransaction) => {
     newTransaction.amount = Number("-" + newTransaction.amount)
-    let res = await axios.post("http://localhost:4000/transaction", newTransaction)
+    let res = await axios.post("/transaction", newTransaction)
     let data = [...this.state.data]
     data.push(res.data)
     this.setState({ data })
   }
 
   deleteTransaction = async (transactionToDelete) => {
-    await axios.delete("http://localhost:4000/transaction", { data: transactionToDelete })
+    await axios.delete("/transaction", { data: transactionToDelete })
     let data = [...this.state.data]
     for (var i = 0; i < data.length; i++) {
       if (data[i]._id === transactionToDelete.id) {
@@ -50,7 +50,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state)
     return (
       <div>
         <div id="transactionContainer">
