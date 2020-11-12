@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Transaction = require("./src/components/transactionSchema");
 
-// mongoose.connect("mongodb://localhost/bankDB", { useNewUrlParser: true })
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bankDB", {
   useNewUrlParser: true,
 });
@@ -56,6 +55,6 @@ app.get("*", function (req, res) {
 });
 
 const port = 4000;
-app.listen(port, function () {
+app.listen(process.env.PORT || PORT, function () {
   console.log(`Running server on port ${port}`);
 });
