@@ -1,7 +1,8 @@
 const express = require("express");
-const path = require('path')
+const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const app = express();
 const Transaction = require("./src/components/transactionSchema");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bankDB", {
@@ -9,12 +10,9 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bankDB", {
 });
 // const sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL);
 
-const app = express();
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use(express.static(path.join(__dirname, "build")));
+// app.use(express.static(path.join(__dirname, "build")));
 
 // never ever add the Access-Control... code snippet in your production code,
 // it allows anyone to access your server with all permissions.
@@ -29,6 +27,7 @@ app.use(function (req, res, next) {
 
   next();
 });
+
 app.get(`/transactions`, async (req, res) => {
   let transactions = await Transaction.find({});
   res.send(transactions);
@@ -50,11 +49,11 @@ app.delete(`/transaction`, async (req, res) => {
   res.send(transactions);
 });
 
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
+// app.get("*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
-const port = 4000;
+const PORT = 4000;
 app.listen(process.env.PORT || PORT, function () {
-  console.log(`Running server on port ${port}`);
+  console.log(`Running server on port ${PORT}`);
 });
