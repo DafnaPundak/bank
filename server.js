@@ -1,5 +1,5 @@
 const express = require("express");
-// const path = require("path");
+const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
@@ -12,7 +12,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bankDB", {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "build")));
 
 // never ever add the Access-Control... code snippet in your production code,
 // it allows anyone to access your server with all permissions.
@@ -50,9 +50,9 @@ app.delete(`/transaction`, async (req, res) => {
   res.send(transactions);
 });
 
-// app.get("*", function (req, res) {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 const PORT = 3000;
 app.listen(process.env.PORT || PORT, function () {
