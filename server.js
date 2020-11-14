@@ -1,5 +1,5 @@
 const express = require("express");
-const path = require("path");
+// const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
@@ -30,6 +30,7 @@ app.use(function (req, res, next) {
 
 app.get(`/transactions`, async (req, res) => {
   let transactions = await Transaction.find({});
+  console.log(transactions)
   res.send(transactions);
 });
 

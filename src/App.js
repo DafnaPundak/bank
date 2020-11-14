@@ -16,8 +16,10 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-    let res = await axios.get("https://localhost:4000/transactions");
+    let res = await axios.get("http://localhost:4000/transactions");
+    console.log(res.data)
     this.setState({ data: res.data });
+    console.log(this.state)
   };
 
   pushPosTransaction = async (newTransaction) => {
