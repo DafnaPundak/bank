@@ -54,7 +54,7 @@ app.delete(`/transaction`, async (req, res) => {
 //   res.sendFile(path.join(__dirname, "build", "index.html"));
 // });
 
-const PORT = 4000;
+const PORT = 3000;
 app.listen(process.env.PORT || PORT, function () {
   console.log(`Running server on port ${PORT}`);
 });
