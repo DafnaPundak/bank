@@ -1,32 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import Container from "@material-ui/core/Container";
+import Divider from "@material-ui/core/Divider";
+import Button from "@material-ui/core/Button";
 
-class Landing extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
+export default function LandingPage(props) {
+  let totalBalance = 0;
+  props.items.map((transaction) => (totalBalance += transaction.amount));
 
-  render() {
-    let totalBalance = 0;
-    this.props.items.map((transaction) => (totalBalance += transaction.amount));
-
-    return (
-      <div className="bankApp">
-        <header className="bankApp-header">
-          <div>My Bank</div>
-          <div>Total Balance: {totalBalance}</div>
-        </header>
-
-        <br></br>
-        <Link to="/operations">Operations</Link>
-        <br></br>
-        <Link to="/transactions">Transactions</Link>
-        <br></br>
-        <Link to="/breakdown">Breakdown</Link>
+  return (
+    <Container fixed>
+      <div>
+        <div>Welcome to D-Bank</div>
+        <Divider />
+        <div>Available Balance: {"$ " + totalBalance.toFixed(2)}</div>
+        <Link to="/menu">
+          <Button variant="outlined" color="secondary">
+            My account
+          </Button>
+        </Link>
       </div>
-    );
-  }
+    </Container>
+  );
 }
-
-export default Landing;

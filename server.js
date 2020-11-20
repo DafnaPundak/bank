@@ -3,12 +3,16 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
-const Transaction = require("./src/components/transactionSchema");
+const api = require("./server/routes/api");
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/bankDB", {
-  useNewUrlParser: true,
-});
-// const sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL);
+mongoose
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/bankDB", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .catch((err) => {
+    console.log(`${err.message}`);
+  });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,37 +28,16 @@ app.use(function (req, res, next) {
     "Access-Control-Allow-Headers",
     "Content-Type, Authorization, Content-Length, X-Requested-With"
   );
-
   next();
 });
 
-app.get(`/transactions`, async (req, res) => {
-  let transactions = await Transaction.find({});
-  console.log(transactions)
-  res.send(transactions);
-});
-
-app.post(`/transaction`, async (req, res) => {
-  let newTransaction = new Transaction({
-    amount: req.body.amount,
-    category: req.body.category,
-    vendor: req.body.vendor,
-  });
-  let transaction = await newTransaction.save({});
-  res.send(transaction);
-});
-
-app.delete(`/transaction`, async (req, res) => {
-  let transactionToRemove = req.body.id;
-  let transactions = await Transaction.deleteOne({ _id: transactionToRemove });
-  res.send(transactions);
-});
+app.use("/", api);
 
 app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-const PORT = 3000;
+const PORT = 4000;
 app.listen(process.env.PORT || PORT, function () {
   console.log(`Running server on port ${PORT}`);
 });
