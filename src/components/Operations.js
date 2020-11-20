@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import HomePageButton from "./HomePageButton";
+import DepositButton from "./DepositButton";
+import WithdrawButton from "./WithdrawButton";
 
 class Operations extends Component {
   constructor() {
@@ -60,18 +60,10 @@ class Operations extends Component {
 
         <span id="buttons">
           <span id="deposit" onClick={this.pushPosTransaction}>
-            <Link to="/transactions">
-              <Button variant="contained" color="primary">
-                Deposit
-              </Button>
-            </Link>
+            <DepositButton />
           </span>
           <span id="withdraw" onClick={this.pushNegTransaction}>
-            <Link to="/transactions">
-              <Button variant="contained" color="primary">
-                Withdraw
-              </Button>
-            </Link>
+            <WithdrawButton />
           </span>
           <span id="home page">
             <Divider />

@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
-import Transactions from "./components/Transactions";
-import Operations from "./components/Operations";
-import Breakdown from "./components/Breakdown";
 import Menu from "./components/Menu";
 import LandingPage from "./components/LandingPage";
 import "./App.css";
@@ -72,34 +69,10 @@ class App extends Component {
               <Menu
                 items={this.state.data}
                 pushPosTransaction={this.pushPosTransaction}
-              />
-            )}
-          />
-          <Route
-            path="/transactions"
-            exact
-            render={() => (
-              <Transactions
-                items={this.state.data}
+                pushNegTransaction={this.pushNegTransaction}
                 deleteTransaction={this.deleteTransaction}
               />
             )}
-          />
-          <Route
-            path="/operations"
-            exact
-            render={() => (
-              <Operations
-                items={this.state.data}
-                pushPosTransaction={this.pushPosTransaction}
-                pushNegTransaction={this.pushNegTransaction}
-              />
-            )}
-          />
-          <Route
-            path="/breakdown"
-            exact
-            render={() => <Breakdown items={this.state.data} />}
           />
         </Router>
       </div>
