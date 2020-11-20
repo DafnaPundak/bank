@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from "@material-ui/icons/Delete";
 
 class Transaction extends Component {
   constructor() {
@@ -16,19 +16,14 @@ class Transaction extends Component {
   render() {
     return (
       <div id="transaction">
-        <div>
-          <p>Vendor: {this.props.vendor}</p>
-          <p>Amount: {this.props.amount}</p>
-          <p>Category: {this.props.category}</p>
-        </div>
+        <p>Vendor: {this.props.vendor}</p>
+        <p>Amount: {this.props.amount}</p>
+        <p>Category: {this.props.category}</p>
         <Button
-          variant="contained"
           color="secondary"
           startIcon={<DeleteIcon />}
           onClick={this.deleteTransaction}
-        >
-          Delete
-        </Button>
+        ></Button>
       </div>
     );
   }
