@@ -16,8 +16,8 @@ class Transaction extends Component {
   render() {
     return (
       <div id="transaction">
-        <p>Vendor: {this.props.vendor}</p>
         <p>Amount: {this.props.amount}</p>
+        <p>Vendor: {this.props.vendor}</p>
         <p>Category: {this.props.category}</p>
         <Button
           color="secondary"

@@ -1,78 +1,118 @@
-import React, { Component } from "react";
+import React from "react";
 import Divider from "@material-ui/core/Divider";
+import clsx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
 import HomePageButton from "./HomePageButton";
 import DepositButton from "./DepositButton";
 import WithdrawButton from "./WithdrawButton";
 
-class Operations extends Component {
-  constructor() {
-    super();
-    this.state = {
-      amount: "",
-      vendor: "",
-      category: "",
-    };
-  }
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  withoutLabel: {
+    marginTop: theme.spacing(3),
+  },
+  textField: {
+    width: "25ch",
+  },
+}));
 
-  handleInput = (e) => {
-    const target = e.target;
-    const inputValue = e.target.value;
-    const name = target.name;
-    this.setState({ [name]: inputValue });
+export default function Operations(props) {
+  const classes = useStyles();
+  const [values, setValues] = React.useState({
+    amount: "",
+    vendor: "",
+    category: "",
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
   };
 
-  pushPosTransaction = () => {
-    let newTransaction = this.state;
-    this.props.pushPosTransaction(newTransaction);
+  const pushPosTransaction = () => {
+    let newTransaction = values;
+    props.pushPosTransaction(newTransaction);
   };
 
-  pushNegTransaction = () => {
-    let newTransaction = this.state;
-    this.props.pushNegTransaction(newTransaction);
+  const pushNegTransaction = () => {
+    let newTransaction = values;
+    props.pushNegTransaction(newTransaction);
   };
 
-  render() {
-    return (
-      <span>
-        <span id="inputs">
-          <input
-            name="amount"
-            type="number"
-            placeholder="Amount"
-            value={this.state.amount}
-            onChange={this.handleInput}
-          ></input>
-          <input
+  return (
+    <div>
+      <div id="inputs" className={classes.root}>
+        <div>
+          <FormControl
+            fullWidth
+            className={clsx(classes.margin, classes.textField)}
+            variant="outlined"
+          >
+            <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-amount"
+              value={values.amount}
+              onChange={handleChange("amount")}
+              startAdornment={
+                <InputAdornment position="start">$</InputAdornment>
+              }
+              labelWidth={60}
+            />
+          </FormControl>
+          <TextField
+            fullWidth
+            label="Vendor"
+            id="outlined-start-adornment-Vendor"
+            className={clsx(classes.margin, classes.textField)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">Vendor</InputAdornment>
+              ),
+            }}
+            variant="outlined"
             name="vendor"
-            type="text"
-            placeholder="Vendor"
-            value={this.state.vendor}
-            onChange={this.handleInput}
-          ></input>
-          <input
-            name="category"
-            type="text"
-            placeholder="Category"
-            value={this.state.category}
-            onChange={this.handleInput}
-          ></input>
-        </span>
-
-        <span id="buttons">
-          <span id="deposit" onClick={this.pushPosTransaction}>
-            <DepositButton />
-          </span>
-          <span id="withdraw" onClick={this.pushNegTransaction}>
-            <WithdrawButton />
-          </span>
-          <span id="home page">
-            <Divider />
-            <HomePageButton />
-          </span>
-        </span>
-      </span>
-    );
-  }
+            value={values.vendor}
+            onChange={handleChange("vendor")}
+          />
+          <TextField
+            fullWidth
+            label="Category"
+            id="outlined-start-adornment-Category"
+            className={clsx(classes.margin, classes.textField)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">Category</InputAdornment>
+              ),
+            }}
+            variant="outlined"
+            value={values.category}
+            onChange={handleChange("category")}
+          />
+        </div>
+      </div>
+      <br />
+      <div id="submit buttons">
+        <div id="deposit" onClick={pushPosTransaction}>
+          <DepositButton />
+        </div>
+        <div id="withdraw" onClick={pushNegTransaction}>
+          <WithdrawButton />
+        </div>
+        <div id="home page">
+          <Divider />
+          <HomePageButton />
+        </div>
+      </div>
+    </div>
+  );
 }
-
-export default Operations;

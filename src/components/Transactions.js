@@ -3,6 +3,7 @@ import Transaction from "./Transaction";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
+import TransactionTable from "./TransactionsTable";
 import HomePageButton from "./HomePageButton";
 
 class Transactions extends Component {
@@ -38,6 +39,7 @@ class Transactions extends Component {
             </Grid>
           </Grid>
         </Grid>
+        <TransactionTable />
         <br />
         <Divider />
         <HomePageButton />

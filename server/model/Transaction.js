@@ -3,8 +3,8 @@ const Schema = mongoose.Schema
 
 const transactionSchema = new Schema({
     amount: Number,
+    vendor: String,
     category: String,
-    vendor: String
 })
 
 const Transaction = mongoose.model(`transaction`, transactionSchema)
