@@ -14,14 +14,14 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-    const response = await axios.get(`http://localhost:4000/transactions`);
+    const response = await axios.get(`/transactions`);
     this.setState({ data: response.data });
   };
 
   pushPosTransaction = async (newTransaction) => {
     newTransaction.amount = Number(newTransaction.amount);
     const response = await axios.post(
-      "http://localhost:4000/transaction",
+      "/transaction",
       newTransaction
     );
     let data = [...this.state.data];
@@ -32,7 +32,7 @@ class App extends Component {
   pushNegTransaction = async (newTransaction) => {
     newTransaction.amount = Number("-" + newTransaction.amount);
     const response = await axios.post(
-      "http://localhost:4000/transaction",
+      "/transaction",
       newTransaction
     );
     let data = [...this.state.data];
@@ -41,7 +41,7 @@ class App extends Component {
   };
 
   deleteTransaction = async (transactionToDelete) => {
-    await axios.delete("http://localhost:4000/transaction", {
+    await axios.delete("/transaction", {
       data: transactionToDelete,
     });
     let data = [...this.state.data];
