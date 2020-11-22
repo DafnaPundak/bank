@@ -3,7 +3,6 @@ import Transaction from "./Transaction";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
-import TransactionTable from "./TransactionsTable";
 import HomePageButton from "./HomePageButton";
 
 class Transactions extends Component {
@@ -20,9 +19,9 @@ class Transactions extends Component {
     return (
       <div>
         <p>Recent Transactions:</p>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Grid container justify="center">
+        <Grid container spacing={1}>
+          <Grid container item xs={12} spacing={3}>
+            {/* <Grid container justify="center"> */}
               {this.props.items.map((t) => (
                 <Grid key={t._id} item>
                   <Paper />
@@ -36,10 +35,9 @@ class Transactions extends Component {
                   />
                 </Grid>
               ))}
-            </Grid>
+            {/* </Grid> */}
           </Grid>
         </Grid>
-        <TransactionTable />
         <br />
         <Divider />
         <HomePageButton />

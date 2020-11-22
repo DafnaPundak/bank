@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
   withoutLabel: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(1),
   },
   textField: {
     width: "25ch",

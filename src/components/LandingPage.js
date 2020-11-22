@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
+import CreditCardIcon from "@material-ui/icons/CreditCard";
+import "./LandingPage.css"
 
 export default function LandingPage(props) {
   let totalBalance = 0;
@@ -10,12 +12,17 @@ export default function LandingPage(props) {
 
   return (
     <Container fixed>
-      <div>
-        <div>Welcome to D-Bank</div>
+      <div className="header">
+        <h1>Welcome to D-Bank</h1>
         <Divider />
         <div>Available Balance: {"$ " + totalBalance.toFixed(2)}</div>
-        <Link to="/menu">
-          <Button variant="outlined" color="secondary">
+        <br/>
+        <Link to="/menu" style={{ textDecoration: 'none' }}>
+          <Button
+            variant="outlined"
+            color="default"
+            startIcon={<CreditCardIcon />}
+          >
             My account
           </Button>
         </Link>
