@@ -14,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-    const response = await axios.get(`http://localhost:4000/transactions`);
+    const response = await axios.get(`/transactions`);
     this.setState({ data: response.data });
   };
 
