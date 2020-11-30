@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
@@ -17,12 +18,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CustomizedSnackbars() {
+export default function CustomizedSnackbars(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(true);
+    props.setIndexTab(1)
   };
 
   const handleClose = (event, reason) => {
@@ -35,9 +37,11 @@ export default function CustomizedSnackbars() {
 
   return (
     <div className={classes.root}>
-      <Button variant="outlined" color="primary" onClick={handleClick}>
-        Withdraw
-      </Button>
+      <Link to="/transactions" style={{ textDecoration: "none" }}>
+        <Button variant="outlined" color="primary" onClick={handleClick}>
+          Withdraw
+        </Button>
+      </Link>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="info">
           Withdraw successfully made!

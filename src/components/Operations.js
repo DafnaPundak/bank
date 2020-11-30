@@ -103,10 +103,10 @@ export default function Operations(props) {
       <br />
       <div id="submit buttons">
         <div id="deposit" onClick={pushPosTransaction}>
-          <DepositButton />
+          <DepositButton setIndexTab={props.setIndexTab}/>
         </div>
         <div id="withdraw" onClick={pushNegTransaction}>
-          <WithdrawButton />
+          <WithdrawButton setIndexTab={props.setIndexTab}/>
         </div>
         <div id="home page">
           <Divider />

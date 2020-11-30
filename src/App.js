@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 import Menu from "./components/Menu";
 import LandingPage from "./components/LandingPage";
+import MenuTransactions from "./components/MenuTransactions";
 import "./App.css";
 
 class App extends Component {
@@ -20,10 +21,7 @@ class App extends Component {
 
   pushPosTransaction = async (newTransaction) => {
     newTransaction.amount = Number(newTransaction.amount);
-    const response = await axios.post(
-      "/transaction",
-      newTransaction
-    );
+    const response = await axios.post("/transaction", newTransaction);
     let data = [...this.state.data];
     data.push(response.data);
     this.setState({ data });
@@ -31,10 +29,7 @@ class App extends Component {
 
   pushNegTransaction = async (newTransaction) => {
     newTransaction.amount = Number("-" + newTransaction.amount);
-    const response = await axios.post(
-      "/transaction",
-      newTransaction
-    );
+    const response = await axios.post("/transaction", newTransaction);
     let data = [...this.state.data];
     data.push(response.data);
     this.setState({ data });
@@ -67,6 +62,18 @@ class App extends Component {
             exact
             render={() => (
               <Menu
+                items={this.state.data}
+                pushPosTransaction={this.pushPosTransaction}
+                pushNegTransaction={this.pushNegTransaction}
+                deleteTransaction={this.deleteTransaction}
+              />
+            )}
+          />
+          <Route
+            path="/transactions"
+            exact
+            render={() => (
+              <MenuTransactions
                 items={this.state.data}
                 pushPosTransaction={this.pushPosTransaction}
                 pushNegTransaction={this.pushNegTransaction}
