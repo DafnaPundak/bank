@@ -21,7 +21,7 @@ class Transactions extends Component {
         <p>Recent Transactions:</p>
         <Grid container spacing={1}>
           <Grid container item xs={12} spacing={3}>
-            {/* <Grid container justify="center"> */}
+            <Grid container justify="center">
               {this.props.items.map((t) => (
                 <Grid key={t._id} item>
                   <Paper />
@@ -35,7 +35,7 @@ class Transactions extends Component {
                   />
                 </Grid>
               ))}
-            {/* </Grid> */}
+            </Grid>
           </Grid>
         </Grid>
         <br />

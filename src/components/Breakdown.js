@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Divider from "@material-ui/core/Divider";
 import HomePageButton from "./HomePageButton";
+import DoughnutChart from "./DoughnutChart";
 
 class Breakdown extends Component {
   constructor() {
@@ -8,7 +9,7 @@ class Breakdown extends Component {
     this.state = {};
   }
 
-  renderObj = () => {
+  componentDidMount() {
     let sumAmount = Number;
     let sumCategory = "";
     let obj = {};
@@ -29,23 +30,25 @@ class Breakdown extends Component {
       }
     }
 
-    return Object.keys(obj).map((key) => {
-      return (
-        <div key={key}>
-          <span>{key}: </span>
-          <span>{obj[key]}</span>
-        </div>
-      );
-    });
-  };
+    this.setState(obj);
+  }
 
   render() {
     return (
       <div id="breakdown">
         <div>BREAKDOWN</div>
-        <div>{this.renderObj()}</div>
+        <div>
+          {Object.keys(this.state).map((key) => (
+            <div key={key}>
+              <span>{key}: </span>
+              <span>{this.state[key]}</span>
+            </div>
+          ))}
+        </div>
+        {/* <div>{this.renderObj()}</div> */}
         <Divider />
         <HomePageButton />
+        <DoughnutChart items={this.state}/>
       </div>
     );
   }
