@@ -14,18 +14,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomizedSnackbars(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-    props.setIndexTab(1)
-  };
-
 
   return (
     <div className={classes.root}>
       <Link to="/transactions" style={{ textDecoration: 'none' }}>
-        <Button variant="outlined" color="inherit" onClick={handleClick}>
+        <Button variant="outlined" color="inherit">
           Deposit
         </Button>
       </Link>

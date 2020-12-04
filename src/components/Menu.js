@@ -76,7 +76,6 @@ export default function SimpleTabs(props) {
           items={props.items}
           pushPosTransaction={props.pushPosTransaction}
           pushNegTransaction={props.pushNegTransaction}
-          setIndexTab={setValue}          
         />
       </TabPanel>
       <TabPanel value={value} index={1}>

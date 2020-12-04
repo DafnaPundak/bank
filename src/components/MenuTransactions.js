@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -23,7 +24,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography component={'div'}>{children}</Typography>
+          <Typography component={"div"}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -66,7 +67,12 @@ export default function SimpleTabs(props) {
           onChange={handleChange}
           aria-label="simple tabs example"
         >
-          <Tab label="Operations" {...a11yProps(0)} />
+          <Tab
+            label="Operations"
+            {...a11yProps(0)}
+            component={Link}
+            to="/menu"
+          />
           <Tab label="Transactions" {...a11yProps(1)} />
           <Tab label="Breakdown" {...a11yProps(2)} />
         </Tabs>
@@ -76,7 +82,6 @@ export default function SimpleTabs(props) {
           items={props.items}
           pushPosTransaction={props.pushPosTransaction}
           pushNegTransaction={props.pushNegTransaction}
-          setIndexTab={setValue}
         />
       </TabPanel>
       <TabPanel value={value} index={1}>
