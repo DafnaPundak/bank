@@ -33,15 +33,18 @@ class Breakdown extends Component {
     }
 
     for (const category in obj) {
+      let objToPush = {};
       if (obj[category] > 0) {
-        depositArr.push(category);
+        objToPush[category] = obj[category];
+        depositArr.push(objToPush);
       } else if (obj[category] < 0) {
-        withdrawArr.push(category);
+        objToPush[category] = obj[category];
+        withdrawArr.push(objToPush);
       }
     }
 
-    console.log(withdrawArr);
     console.log(depositArr);
+    console.log(withdrawArr);
     console.log(obj);
 
     return (
