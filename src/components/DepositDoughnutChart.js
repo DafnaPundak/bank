@@ -4,8 +4,13 @@ import {
   Chart,
   PieSeries,
   Title,
+  Tooltip,
 } from "@devexpress/dx-react-chart-material-ui";
-import { Animation } from "@devexpress/dx-react-chart";
+import {
+  Animation,
+  EventTracker,
+  HoverState,
+} from "@devexpress/dx-react-chart";
 
 export default class DepositChart extends React.PureComponent {
   constructor(props) {
@@ -26,7 +31,7 @@ export default class DepositChart extends React.PureComponent {
   }
 
   render() {
-    const { data: chartData } = this.state;
+    const { data: chartData, target } = this.state;
 
     return (
       <Paper>
@@ -38,6 +43,11 @@ export default class DepositChart extends React.PureComponent {
           />
           <Title text="Deposit Transactions Breakdown" />
           <Animation />
+          <EventTracker />
+          <HoverState
+            hover={target}
+          />
+          <Tooltip targetItem={target} />
         </Chart>
       </Paper>
     );
