@@ -9,35 +9,13 @@ class Breakdown extends Component {
     this.state = {};
   }
 
-  // componentDidMount() {
-  //   let sumAmount = Number;
-  //   let sumCategory = "";
-  //   let obj = {};
-  //   let data = this.props.items;
-
-  //   for (let i = 0; i < data.length; i++) {
-  //     for (let k = i + 1; k < data.length; k++) {
-  //       if (data[i].category === data[k].category) {
-  //         sumAmount = data[i].amount + data[k].amount;
-  //         sumCategory = data[i].category;
-  //         obj[sumCategory] = sumAmount;
-  //       }
-  //     }
-  //     if (obj[data[i].category] === undefined) {
-  //       sumAmount = data[i].amount;
-  //       sumCategory = data[i].category;
-  //       obj[sumCategory] = sumAmount;
-  //     }
-  //   }
-
-  //   this.setState(obj);
-  // }
-
   render() {
     let sumAmount = Number;
     let sumCategory = "";
     let obj = {};
     let data = this.props.items;
+    let withdrawArr = [];
+    let depositArr = [];
 
     for (let i = 0; i < data.length; i++) {
       for (let k = i + 1; k < data.length; k++) {
@@ -53,6 +31,18 @@ class Breakdown extends Component {
         obj[sumCategory] = sumAmount;
       }
     }
+
+    for (const category in obj) {
+      if (obj[category] > 0) {
+        depositArr.push(category);
+      } else if (obj[category] < 0) {
+        withdrawArr.push(category);
+      }
+    }
+
+    console.log(withdrawArr);
+    console.log(depositArr);
+    console.log(obj);
 
     return (
       <div id="breakdown">
