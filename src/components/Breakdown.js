@@ -1,21 +1,22 @@
 import React, { Component } from "react";
 import Divider from "@material-ui/core/Divider";
 import HomePageButton from "./HomePageButton";
-import DoughnutChart from "./DoughnutChart";
+import WithdrawDoughnutChart from "./WithdrawDoughnutChart";
+import DepositDoughnutChart from "./DepositDoughnutChart";
 
 class Breakdown extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {};
+  // }
 
   render() {
     let sumAmount = Number;
     let sumCategory = "";
     let obj = {};
     let data = this.props.items;
-    let withdrawArr = [];
-    let depositArr = [];
+    let withdrawObj = {};
+    let depositObj = {};
 
     for (let i = 0; i < data.length; i++) {
       for (let k = i + 1; k < data.length; k++) {
@@ -33,32 +34,34 @@ class Breakdown extends Component {
     }
 
     for (const category in obj) {
-      let objToPush = {};
       if (obj[category] > 0) {
-        objToPush[category] = obj[category];
-        depositArr.push(objToPush);
+        depositObj[category] = obj[category];
       } else if (obj[category] < 0) {
-        objToPush[category] = obj[category];
-        withdrawArr.push(objToPush);
+        withdrawObj[category] = obj[category];
       }
     }
-
-    console.log(depositArr);
-    console.log(withdrawArr);
-    console.log(obj);
 
     return (
       <div id="breakdown">
         <div>BREAKDOWN</div>
         <div>
-          {Object.keys(obj).map((key) => (
+          {Object.keys(withdrawObj).map((key) => (
             <div key={key}>
               <span>{key}: </span>
               <span>{obj[key]}</span>
             </div>
           ))}
         </div>
-        <DoughnutChart items={obj} />
+        <WithdrawDoughnutChart items={withdrawObj} />
+        <div>
+          {Object.keys(depositObj).map((key) => (
+            <div key={key}>
+              <span>{key}: </span>
+              <span>{obj[key]}</span>
+            </div>
+          ))}
+        </div>
+        <DepositDoughnutChart items={depositObj} />
         <Divider />
         <HomePageButton />
       </div>

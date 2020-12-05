@@ -7,7 +7,7 @@ import {
 } from "@devexpress/dx-react-chart-material-ui";
 import { Animation } from "@devexpress/dx-react-chart";
 
-export default class Demo extends React.PureComponent {
+export default class DepositChart extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -36,7 +36,7 @@ export default class Demo extends React.PureComponent {
             argumentField="region"
             innerRadius={0.6}
           />
-          <Title text="Transactions Breakdown" />
+          <Title text="Deposit Transactions Breakdown" />
           <Animation />
         </Chart>
       </Paper>
