@@ -3,6 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import {
   Chart,
   PieSeries,
+  Legend,
   Title,
   Tooltip,
 } from "@devexpress/dx-react-chart-material-ui";
@@ -41,12 +42,11 @@ export default class DepositChart extends React.PureComponent {
             argumentField="region"
             innerRadius={0.6}
           />
+          <Legend />
           <Title text="Deposit Transactions Breakdown" />
           <Animation />
           <EventTracker />
-          <HoverState
-            hover={target}
-          />
+          <HoverState hover={target} />
           <Tooltip targetItem={target} />
         </Chart>
       </Paper>

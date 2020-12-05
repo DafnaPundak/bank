@@ -3,6 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import {
   Chart,
   PieSeries,
+  Legend,
   Title,
   Tooltip,
 } from "@devexpress/dx-react-chart-material-ui";
@@ -41,6 +42,7 @@ export default class WithdrawChart extends React.PureComponent {
             argumentField="region"
             innerRadius={0.6}
           />
+          <Legend />
           <Title text="Withdarw Transactions Breakdown" />
           <Animation />
           <EventTracker />

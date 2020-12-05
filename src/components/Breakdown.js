@@ -43,7 +43,7 @@ class Breakdown extends Component {
 
     return (
       <div id="breakdown">
-        <div>BREAKDOWN</div>
+        <WithdrawDoughnutChart items={withdrawObj} />
         <div>
           {Object.keys(withdrawObj).map((key) => (
             <div key={key}>
@@ -52,7 +52,7 @@ class Breakdown extends Component {
             </div>
           ))}
         </div>
-        <WithdrawDoughnutChart items={withdrawObj} />
+        <DepositDoughnutChart items={depositObj} />
         <div>
           {Object.keys(depositObj).map((key) => (
             <div key={key}>
@@ -61,7 +61,6 @@ class Breakdown extends Component {
             </div>
           ))}
         </div>
-        <DepositDoughnutChart items={depositObj} />
         <Divider />
         <HomePageButton />
       </div>
