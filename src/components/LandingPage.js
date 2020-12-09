@@ -25,7 +25,7 @@ export default function LandingPage(props) {
           >
             My account
           </Button> */}
-          <a href="/menu" className="btn btn-white" to="/menu" component={Link}>My account</a>
+          <a href="/menu" className="btn btn-white btn-animated" to="/menu" component={Link}>My account</a>
         {/* </Link> */}
       </div>
     </Container>
