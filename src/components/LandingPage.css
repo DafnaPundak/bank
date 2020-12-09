@@ -1,4 +1,5 @@
 .header {
+  margin: 30px;
   background-color: #ff8a65;
   min-height: 100vh;
   display: flex;
@@ -7,4 +8,56 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  text-align: center;
+  text-transform: uppercase;
+  /* margin: 60px; */
+}
+
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 30px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 5px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+  margin: 20px;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scale(2);
 }
