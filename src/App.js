@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 import Menu from "./components/Menu";
 import LandingPage from "./components/LandingPage";
-import MenuTransactions from "./components/MenuTransactions";
 import "./App.css";
 
 class App extends Component {
@@ -62,6 +61,7 @@ class App extends Component {
             exact
             render={() => (
               <Menu
+                index={0}
                 items={this.state.data}
                 pushPosTransaction={this.pushPosTransaction}
                 pushNegTransaction={this.pushNegTransaction}
@@ -73,7 +73,8 @@ class App extends Component {
             path="/transactions"
             exact
             render={() => (
-              <MenuTransactions
+              <Menu
+                index={1}
                 items={this.state.data}
                 pushPosTransaction={this.pushPosTransaction}
                 pushNegTransaction={this.pushNegTransaction}
