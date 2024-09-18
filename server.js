@@ -16,7 +16,7 @@ mongoose
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "src")));
+app.use(express.static(path.join(__dirname, "build")));
 
 // never ever add the Access-Control... code snippet in your production code,
 // it allows anyone to access your server with all permissions.
