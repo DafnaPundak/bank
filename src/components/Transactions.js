@@ -8,7 +8,7 @@ import HomePageButton from "./HomePageButton";
 class Transactions extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {super: 876};
   }
 
   deleteTransaction = (transactionToDelete) => {
