@@ -8,7 +8,7 @@ import "./LandingPage.css"
 
 export default function LandingPage(props) {
   let totalBalance = 0;
-  if (props.items) {
+  if (props.items.length > 0) {
   props.items.map((transaction) => (totalBalance += transaction.amount));
 }
   return (
