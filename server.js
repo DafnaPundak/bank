@@ -3,7 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
-const api = require("./src/routes/api");
+const api = require("./src/server/routes/api");
 
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/bankDB", {
@@ -34,7 +34,7 @@ app.use(function (req, res, next) {
 app.use("/", api);
 
 app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "/public/index.html"));
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 const PORT = 4000;
