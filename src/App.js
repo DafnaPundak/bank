@@ -13,28 +13,28 @@ class App extends Component {
     };
   }
 
-  componentDidMount = async () => {
+  async componentDidMount() {
     const response = await axios.get(`/transactions`);
     this.setState({ data: response.data });
-  };
+  }
 
-  pushPosTransaction = async (newTransaction) => {
+  async pushPosTransaction(newTransaction) {
     newTransaction.amount = Number(newTransaction.amount);
     const response = await axios.post("/transaction", newTransaction);
     let data = [...this.state.data];
     data.push(response.data);
     this.setState({ data });
-  };
+  }
 
-  pushNegTransaction = async (newTransaction) => {
+  async pushNegTransaction(newTransaction) {
     newTransaction.amount = Number("-" + newTransaction.amount);
     const response = await axios.post("/transaction", newTransaction);
     let data = [...this.state.data];
     data.push(response.data);
     this.setState({ data });
-  };
+  }
 
-  deleteTransaction = async (transactionToDelete) => {
+  async deleteTransaction(transactionToDelete) {
     await axios.delete("/transaction", {
       data: transactionToDelete,
     });
@@ -45,7 +45,7 @@ class App extends Component {
         this.setState({ data });
       }
     }
-  };
+  }
 
   render() {
     return (
