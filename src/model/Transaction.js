@@ -7,5 +7,5 @@ const transactionSchema = new Schema({
     category: String,
 })
 
-const Transaction = mongoose.model(`transaction`, transactionSchema)
+const Transaction = mongoose.model(`transactions`, transactionSchema)
 module.exports = Transaction
