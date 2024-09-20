@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const request = require("request");
-const Transaction = require("../../model/Transaction");
+const Transaction = require("../src/model/Transaction");
 
 router.get(`/transactions`, (req, res) => {
   Transaction.find({}, (err, transactions) => {

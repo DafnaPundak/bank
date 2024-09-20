@@ -3,7 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
-const api = require("./src/server/routes/api");
+const api = require("./api/api");
 
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/bankDB", {
