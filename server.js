@@ -40,11 +40,11 @@ app.post("/api/transactions", async (req, res) => {
 
 app.get("/api/transactions", async (req, res) => {
   try {
-    const transactions = await Transaction.find(); // Fetch all transactions
+    const transactions = await Transaction.find();
+    res.set('Cache-Control', 'no-store'); // Disable caching
     res.status(200).json(transactions);
-  } catch (error) {
-    console.error("Error fetching transactions:", error);
-    res.status(500).json({ message: "Error fetching transactions", error });
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching transactions", error: err });
   }
 });
 
