@@ -21,6 +21,8 @@ mongoose
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, "build")));
 
+app.use("/api/transactions", require("./routes/transactions"));
+
 // API routes
 app.post("/api/transactions", async (req, res) => {
   console.log("Received transaction:", req.body);
