@@ -1,86 +1,59 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import axios from "axios";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import axios from 'axios';
+import Dashboard from "./components/Dashboard";
+import TransactionForm from "./components/TransactionForm";
+import TransactionList from "./components/TransactionList";
 import Menu from "./components/Menu";
-import LandingPage from "./components/LandingPage";
-import "./App.css";
 
-const App = () => {
-  // State using hooks
-  const [data, setData] = useState([]);
-
-  // useEffect to replace componentDidMount
+function App() {
+  const [transactions, setTransactions] = useState([]);
+  
+  // Fetch transactions from the backend when the app loads
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(`/transactions`);
-      setData(response.data);
+    const fetchTransactions = async () => {
+      try {
+        const response = await axios.get("/api/transactions"); // Fetch transactions from backend
+        setTransactions(response.data); // Update the state with fetched data
+      } catch (error) {
+        console.error("Error fetching transactions:", error);
+      }
     };
+    fetchTransactions(); // Invoke the fetch function
+  }, []); // The empty array ensures it only runs once on component mount
 
-    fetchData();
-  }, []); // Empty dependency array mimics componentDidMount
+  const addTransaction = async (newTransaction) => {
+    const amount = Number(newTransaction.amount);
 
-  // Function to handle positive transaction
-  const pushPosTransaction = async (newTransaction) => {
-    newTransaction.amount = Number(newTransaction.amount);
-    const response = await axios.post("/transaction", newTransaction);
-    setData([...data, response.data]);
+    if (newTransaction.type === "withdrawal") {
+      newTransaction.amount = -Math.abs(amount);
+    }
+
+    try {
+      const response = await axios.post("/api/transactions", newTransaction); // Save transaction in backend
+      const savedTransaction = response.data;
+      setTransactions([...transactions, savedTransaction]); // Add saved transaction to state
+    } catch (error) {
+      console.error("Error adding transaction:", error);
+    }
   };
 
-  // Function to handle negative transaction
-  const pushNegTransaction = async (newTransaction) => {
-    newTransaction.amount = Number("-" + newTransaction.amount);
-    const response = await axios.post("/transaction", newTransaction);
-    setData([...data, response.data]);
-  };
-
-  // Function to handle deletion of a transaction
-  const deleteTransaction = async (transactionToDelete) => {
-    await axios.delete("/transaction", {
-      data: transactionToDelete,
-    });
-    const updatedData = data.filter(
-      (transaction) => transaction._id !== transactionToDelete.id
-    );
-    setData(updatedData);
+  const calculateBalance = () => {
+    return transactions.reduce((acc, transaction) => acc + Number(transaction.amount), 0);
   };
 
   return (
-    <div>
-      <Router>
-        <Route
-          path="/"
-          exact
-          render={() => <LandingPage items={data} />}
-        />
-        <Route
-          path="/menu"
-          exact
-          render={() => (
-            <Menu
-              index={0}
-              items={data}
-              pushPosTransaction={pushPosTransaction}
-              pushNegTransaction={pushNegTransaction}
-              deleteTransaction={deleteTransaction}
-            />
-          )}
-        />
-        <Route
-          path="/transactions"
-          exact
-          render={() => (
-            <Menu
-              index={1}
-              items={data}
-              pushPosTransaction={pushPosTransaction}
-              pushNegTransaction={pushNegTransaction}
-              deleteTransaction={deleteTransaction}
-            />
-          )}
-        />
-      </Router>
-    </div>
+    <Router>
+      <div>
+        <Menu />
+        <Routes>
+          <Route path="/" element={<Dashboard balance={calculateBalance()} />} />
+          <Route path="/transactions" element={<TransactionList transactions={transactions} />} />
+          <Route path="/add-transaction" element={<TransactionForm addTransaction={addTransaction} />} />
+        </Routes>
+      </div>
+    </Router>
   );
-};
+}
 
 export default App;

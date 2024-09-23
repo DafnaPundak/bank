@@ -1,32 +1,23 @@
-import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
-import DeleteIcon from "@material-ui/icons/Delete";
+import React from "react";
+import PropTypes from "prop-types";
 
-class Transaction extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
-
-  deleteTransaction = async () => {
-    let transactionToDelete = this.props;
-    this.props.deleteTransaction(transactionToDelete);
-  };
-
-  render() {
-    return (
-      <div id="transaction">
-        <p>Amount: {this.props.amount}</p>
-        <p>Vendor: {this.props.vendor}</p>
-        <p>Category: {this.props.category}</p>
-        <Button
-          color="secondary"
-          startIcon={<DeleteIcon />}
-          onClick={this.deleteTransaction}
-        ></Button>
-      </div>
-    );
-  }
+function Transaction({ amount, type }) {
+  return (
+    <div className="transaction">
+      <p>
+        <strong>Type:</strong> {type}
+      </p>
+      <p>
+        <strong>Amount:</strong> ${amount}
+      </p>
+    </div>
+  );
 }
+
+// Prop types for type checking
+Transaction.propTypes = {
+  amount: PropTypes.string.isRequired, // Use string if you are sending it as a string
+  type: PropTypes.string.isRequired,
+};
 
 export default Transaction;

@@ -1,43 +1,57 @@
 const express = require("express");
-const path = require("path");
-const bodyParser = require("body-parser");
+const Transaction = require("./models/Transaction"); // Adjust the path as needed
 const mongoose = require("mongoose");
+const cors = require("cors");
+const path = require("path");
+require("dotenv").config();
+
 const app = express();
-const api = require("./api/api");
+const PORT = process.env.PORT || 5000;
 
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://localhost/bankDB", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .catch((err) => {
-    console.log(`${err.message}`);
-  });
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+// Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, "build")));
 
-// never ever add the Access-Control... code snippet in your production code,
-// it allows anyone to access your server with all permissions.
-// It is only safe for development purposes.
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization, Content-Length, X-Requested-With"
-  );
-  next();
+// API routes
+app.post("/api/transactions", async (req, res) => {
+  console.log("Received transaction:", req.body);
+
+  try {
+    const newTransaction = new Transaction(req.body);
+    const savedTransaction = await newTransaction.save();
+    console.log("Transaction saved:", savedTransaction);
+    res.status(201).json(savedTransaction);
+  } catch (error) {
+    console.error("Error saving transaction:", error);
+    res.status(500).json({ message: "Error saving transaction", error });
+  }
 });
 
-app.use("/", api);
+app.get("/api/transactions", async (req, res) => {
+  try {
+    const transactions = await Transaction.find(); // Fetch all transactions
+    res.status(200).json(transactions);
+  } catch (error) {
+    console.error("Error fetching transactions:", error);
+    res.status(500).json({ message: "Error fetching transactions", error });
+  }
+});
 
-app.get("*", function (req, res) {
+// Catch-all route to serve the React frontend
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-const PORT = 4000;
-app.listen(process.env.PORT || PORT, function () {
-  console.log(`Running server on port ${PORT}`);
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
