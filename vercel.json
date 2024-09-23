@@ -3,17 +3,16 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/$1" // Directs API requests to your server files in the api folder
+      "dest": "/api/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html" // Serves your React app for all other routes
+      "dest": "/index.html"
     }
   ],
   "builds": [
     {
       "src": "api/server.js",
-      "use": "@vercel/node" // Use Vercel's Node.js builder for your server
-    }
+      "use": "@vercel/node"
   ]
 }
