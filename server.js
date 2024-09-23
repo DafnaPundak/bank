@@ -14,14 +14,17 @@ app.use(express.json());
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
+app.use("/api/transactions", require("./routes/transactions"));
+
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, "build")));
-
-app.use("/api/transactions", require("./routes/transactions"));
 
 // API routes
 app.post("/api/transactions", async (req, res) => {
@@ -41,10 +44,12 @@ app.post("/api/transactions", async (req, res) => {
 app.get("/api/transactions", async (req, res) => {
   try {
     const transactions = await Transaction.find();
-    res.set('Cache-Control', 'no-store'); // Disable caching
+    res.set("Cache-Control", "no-store"); // Disable caching
     res.status(200).json(transactions);
   } catch (err) {
-    res.status(500).json({ message: "Error fetching transactions", error: err });
+    res
+      .status(500)
+      .json({ message: "Error fetching transactions", error: err });
   }
 });
 
