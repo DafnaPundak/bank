@@ -14,6 +14,7 @@ function App() {
     const fetchTransactions = async () => {
       try {
         const response = await axios.get("/api/transactions"); // Fetch transactions from backend
+        console.log("Fetched transactions:", response);
         setTransactions(response.data); // Update the state with fetched data
       } catch (error) {
         console.error("Error fetching transactions:", error);

@@ -15,6 +15,7 @@ router.get("/", async (req, res) => {
 // Post a new transaction
 router.post("/", async (req, res) => {
   try {
+    console.log("post a new transaction:", req.body)
     const newTransaction = new Transaction(req.body);
     const savedTransaction = await newTransaction.save();
     res.status(201).json(savedTransaction);

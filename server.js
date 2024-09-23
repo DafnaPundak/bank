@@ -14,10 +14,7 @@ app.use(express.json());
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
@@ -42,8 +39,11 @@ app.post("/api/transactions", async (req, res) => {
 });
 
 app.get("/api/transactions", async (req, res) => {
+  console.log("Fetched transactions:", req.body);
+
   try {
     const transactions = await Transaction.find();
+    console.log("Fetched transactions:", transactions);
     res.set("Cache-Control", "no-store"); // Disable caching
     res.status(200).json(transactions);
   } catch (err) {
