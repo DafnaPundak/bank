@@ -39,7 +39,20 @@ function App() {
   };
 
   const calculateBalance = () => {
-    return transactions.reduce((acc, transaction) => acc + Number(transaction.amount), 0);
+    try {
+      return transactions.reduce((acc, transaction) => {
+        // Ensure amount is a number, log if not
+        const amount = Number(transaction.amount);
+        if (isNaN(amount)) {
+          console.warn(`Invalid amount for transaction: ${transaction}`);
+          return acc; // Skip invalid transactions
+        }
+        return acc + amount;
+      }, 0);
+    } catch (error) {
+      console.error("Error calculating balance:", error);
+      return 0; // Return 0 if an error occurs
+    }
   };
 
   return (
