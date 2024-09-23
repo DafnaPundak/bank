@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "Fullstack Bank App using MERN",
-  "main": "server.js",
+  "main": "src/App.js",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@testing-library/jest-dom": "^5.17.0",
@@ -21,9 +21,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node api/server.js",
     "dev": "concurrently \"npm run server\" \"npm start --prefix src\"",
-    "server": "nodemon server.js",
+    "server": "nodemon api/server.js",
     "client": "npm start --prefix src",
     "build": "react-scripts build"
   },
