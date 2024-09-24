@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get("/api/transactions"); // Fetch transactions from backend
+        const response = await axios.get("https://kidswallet.vercel.app/api/transactions"); // Fetch transactions from backend
         console.log("Fetched transactions:", response);
         setTransactions(response.data); // Update the state with fetched data
       } catch (error) {
