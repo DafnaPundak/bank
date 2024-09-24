@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./TransactionForm.css"; // Import the CSS file
 
 function TransactionForm({ addTransaction }) {
   const [transaction, setTransaction] = useState({ amount: "", type: "" });

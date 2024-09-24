@@ -1,0 +1,34 @@
+.transaction-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  .transaction-list {
+    padding: 10px;
+    margin: 20px auto;
+    width: 80%;
+  }
+  
+  .transaction-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin: 5px 0;
+    border-radius: 5px;
+  }
+  
+  .transaction-item:nth-child(odd) {
+    background-color: #f1f1f1;
+  }
+  
+  .transaction-item .amount {
+    color: #4CAF50;
+    font-weight: bold;
+  }
+  
+  .transaction-item .type {
+    color: #FF5722;
+  }
+    

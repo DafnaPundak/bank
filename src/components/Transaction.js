@@ -1,15 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./Transaction.css"; // Import the CSS file
 
 function Transaction({ amount, type }) {
   return (
-    <div className="transaction">
-      <p>
-        <strong>Type:</strong> {type}
-      </p>
-      <p>
-        <strong>Amount:</strong> ${amount}
-      </p>
+    <div className="transaction-row">
+      <span>{amount}</span>
+      <span>{type}</span>
     </div>
   );
 }

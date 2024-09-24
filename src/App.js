@@ -5,6 +5,8 @@ import Dashboard from "./components/Dashboard";
 import TransactionForm from "./components/TransactionForm";
 import TransactionList from "./components/TransactionList";
 import Menu from "./components/Menu";
+import "./App.css"; // Import the CSS file
+
 
 function App() {
   const [transactions, setTransactions] = useState([]);

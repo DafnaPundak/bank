@@ -1,4 +1,5 @@
 import React from "react";
+import "./Dashboard.css"; // Import the CSS file
 
 function Dashboard({ balance }) {
   return (
