@@ -23,7 +23,7 @@
   "scripts": {
     "start": "node api/server.js",
     "dev": "concurrently \"npm run server\" \"npm start --prefix src\"",
-    "server": "nodemon api/server.js",
+    "server": "node api/server.js",
     "client": "npm start --prefix src",
     "build": "react-scripts build"
   },
