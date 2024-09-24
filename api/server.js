@@ -1,5 +1,5 @@
 const express = require("express");
-const Transaction = require("./models/Transaction"); // Adjust the path as needed
+const Transaction = require("../src/models/Transaction"); // Adjust the path as needed
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
@@ -24,7 +24,7 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-app.use("/api/transactions", require("./routes/transactions"));
+app.use("/api/transactions", require("../src/routes/transactions"));
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, "../build")));
