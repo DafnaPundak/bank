@@ -5,8 +5,8 @@ import "./Transaction.css"; // Import the CSS file
 function Transaction({ amount, type }) {
   return (
     <div className="transaction-row">
-      <span>{amount}</span>
-      <span>{type}</span>
+      <span>{type}: </span>
+      <span>{`$${parseFloat(amount).toFixed(2)}`}</span> {/* Add currency sign here */}
     </div>
   );
 }

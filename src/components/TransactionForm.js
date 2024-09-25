@@ -11,7 +11,7 @@ function TransactionForm({ addTransaction }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="add-transaction-form" onSubmit={handleSubmit}>
       <input
         type="number"
         placeholder="Amount"

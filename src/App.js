@@ -60,8 +60,8 @@ function App() {
 
   return (
     <Router>
-      <div>
-        <Menu />
+      <div className="container">
+        <Menu balance={calculateBalance()}/>
         <Routes>
           <Route path="/" element={<Dashboard balance={calculateBalance()} />} />
           <Route path="/transactions" element={<TransactionList transactions={transactions} />} />

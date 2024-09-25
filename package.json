@@ -21,10 +21,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node api/server.js",
+    "start": "react-scripts start",
     "dev": "concurrently \"npm run server\" \"npm start --prefix src\"",
     "server": "node api/server.js",
-    "client": "npm start --prefix src",
+    "client": "npm start --prefix",
     "build": "react-scripts build"
   },
   "eslintConfig": {

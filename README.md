@@ -1,70 +1,64 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 👜 Kids Wallet App
 
-## Available Scripts
+**Kids Wallet** is a simple, intuitive financial management tool designed for children. Built using the MERN stack, this app allows users to track deposits and withdrawals, view transaction history, and keep their balance up to date—all within a modern, colorful interface. It’s perfect for teaching kids about managing money in a fun and interactive way!
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- **Real-time balance updates**  
+  The app automatically updates the user’s balance with every deposit and withdrawal.
+  
+- **Transaction history**  
+  See all your financial activity in one place, with each transaction displayed in a stylish horizontal format.
+  
+- **Modern, kid-friendly UI**  
+  The app's interface is designed to be engaging for young users, making managing money a fun experience.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **MERN stack**  
+  Built using MongoDB, Express.js, React, and Node.js to provide a smooth, full-stack application experience.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠 Tech Stack
 
-### `npm test`
+- **Frontend:** React.js, CSS
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB
+- **Deployment:** Vercel
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🏗️ Installation and Setup
 
-### `npm run build`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/dafnapundak/kids-wallet-app.git
+   ```
+   
+2. Navigate to the project directory:
+   ```bash
+   cd kids-wallet-app
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Set up environment variables:
+   Create a `.env` file in the root directory and add your MongoDB URI:
+   ```env
+   MONGODB_URI=your-mongodb-uri
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-### `npm run eject`
+6. Visit the app in your browser at:
+   ```
+   http://localhost:4000
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🔧 Available Scripts
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **npm run dev**: Starts both the frontend and backend in development mode.
+- **npm run build**: Builds the app for production.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
