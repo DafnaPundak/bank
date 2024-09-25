@@ -54,4 +54,8 @@ a:hover {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-image: url('/public/notes.png'); /* Path to your image */
+  background-size: cover; /* Ensures the image covers the entire container */
+  background-position: center; /* Center the image within the container */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
 }
